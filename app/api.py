@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.tts import speak_text
@@ -50,3 +50,9 @@ async def speak(request: Request):
     except Exception as e:
         logging.exception("Error in /speak endpoint")
         return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/")
+def read_index():
+    return FileResponse("frontend/index.html")
+
