@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Gesture to Speech</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection"></script>
-    <link rel="stylesheet" href="/frontend/style.css" />
-    <script src="/frontend/script.js" defer></script>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+    <script src="/static/script.js" defer></script>
 </head>
 <body>
-    <h1>Real-Time Gesture to Speech</h1>
-    <video id="webcam" autoplay playsinline aria-label="Webcam video feed"></video>
-    <p id="gesture-result">Gesture: <span id="gesture">None</span></p>
-    <div id="status" aria-live="polite"></div>
+    <h1 style="margin-bottom: 10px; font-weight: 600; color: #222;">Gesture to Speech</h1>
+    <div style="display: flex; justify-content: center; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+        <div>
+            <video id="video" width="320" height="240" autoplay muted style="border-radius: 12px; border: 2px solid #007bff; box-shadow: 0 2px 8px rgba(0,0,0,0.08);"></video>
+        </div>
+        <div>
+            <canvas id="canvas" width="320" height="240" style="border-radius: 12px; border: 2px solid #28a745; box-shadow: 0 2px 8px rgba(0,0,0,0.08);"></canvas>
+        </div>
+    </div>
+    <p id="gesture-result" style="font-size: 1.2em; margin-bottom: 8px;">Gesture: <span id="gesture">None</span></p>
+    <div id="status" aria-live="polite" style="min-height: 24px; color: #007bff; font-size: 1.1em;"></div>
 </body>
 </html>
