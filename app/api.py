@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.tts import speak_text
@@ -51,6 +52,6 @@ async def speak(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
-@app.get("/", include_in_schema=False)
+@app.get("/")
 def read_index():
     return FileResponse("frontend/index.html")
