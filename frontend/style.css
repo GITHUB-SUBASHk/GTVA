@@ -1,0 +1,17 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    background: #f8f9fa;
+}
+video {
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+#status {
+    margin-top: 15px;
+    color: #007bff;
+    min-height: 24px;
+    font-size: 1.1em;
+}
