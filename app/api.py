@@ -23,13 +23,12 @@ AUDIO_DIR = os.path.join(STATIC_DIR, "audio")
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 # Mount static files for serving audio
+# Serve audio
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-
-@app.get("/", response_model=dict)
-async def root():
-    """Health check endpoint."""
-    return {"message": "Gesture-to-Speech App Running"}
+# Serve CSS and JS
+FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")
+app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 
 
 @app.post("/speak", response_model=dict)
@@ -52,7 +51,6 @@ async def speak(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def read_index():
     return FileResponse("frontend/index.html")
-
