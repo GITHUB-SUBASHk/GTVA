@@ -43,3 +43,6 @@ async def speak(request: Request):
         return JSONResponse({"error": "Invalid gesture"}, status_code=400)
     except Exception as e:
         return JSONResponse({"error": str(e)}, status_code=500)
+@app.get("/")
+def read_index():
+    return FileResponse("frontend/index.html")
