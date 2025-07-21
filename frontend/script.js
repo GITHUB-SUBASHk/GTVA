@@ -1,4 +1,4 @@
-const video = document.getElementById("video");
+const video = document.getElementById("webcam");
 const gestureText = document.getElementById("gesture");
 const statusDiv = document.getElementById("status");
 let currentAudio = null;
