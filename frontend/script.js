@@ -26,7 +26,6 @@ async function setupCamera() {
         });
     } catch (err) {
         statusDiv.textContent = "Camera access denied or unavailable.";
-        throw err;
     }
 }
 
