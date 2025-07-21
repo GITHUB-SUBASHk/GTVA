@@ -1,5 +1,10 @@
-import * as handPoseDetection from '@tensorflow-models/hand-pose-detection';
-import { Camera } from '@mediapipe/camera_utils';
+// Real-time gesture detection and speech using TensorFlow Handpose and MediaPipe
+// Ensure your HTML uses id="video" for the video element and id="canvas" for the canvas
+
+// If using a bundler, use import statements. If using CDN, use global objects.
+// For CDN, comment out the imports below and use window.handPoseDetection, etc.
+// import * as handPoseDetection from '@tensorflow-models/hand-pose-detection';
+// import { Camera } from '@mediapipe/camera_utils';
 
 const gestureText = document.getElementById("gesture");
 const statusDiv = document.getElementById("status");
@@ -20,6 +25,7 @@ const gestureMap = {
 };
 
 async function loadModel() {
+    // For CDN usage:
     detector = await handPoseDetection.createDetector(handPoseDetection.SupportedModels.MediaPipeHands, {
         runtime: 'tfjs',
         modelType: 'lite',
@@ -45,14 +51,15 @@ function drawLandmarks(landmarks) {
 
 function classifyGesture(landmarks) {
     if (!landmarks || landmarks.length === 0) return null;
-    return 'Open_Palm'; // Placeholder: Replace with your logic
+    // Simple placeholder logic: always returns Open_Palm
+    // Replace with your own logic for real gesture classification
+    return 'Open_Palm';
 }
 
 function speakGesture(text) {
     if (cooldown || text === lastGesture) return;
     lastGesture = text;
     cooldown = true;
-
     fetch("/speak", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
@@ -76,7 +83,6 @@ function speakGesture(text) {
 
 async function detectLoop() {
     if (!detector) return;
-
     const hands = await detector.estimateHands(video, { flipHorizontal: true });
     if (hands.length > 0) {
         const landmarks = hands[0].keypoints;
