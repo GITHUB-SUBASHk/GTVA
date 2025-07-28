@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gesture Communication</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Gesture Communication Interface</h1>
+    <div>
+        <video id="webcam" autoplay playsinline width="640" height="480"></video>
+        <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    </div>
+    <h2>Prediction: <span id="prediction">Waiting...</span></h2>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload and Predict</button>
+    </form>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
