@@ -1,0 +1,18 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  gesture-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    devices:
+      - /dev/video0:/dev/video0  # Map webcam device
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
