@@ -4,7 +4,7 @@ jinja2
 tensorflow-cpu==2.15.0
 numpy
 python-multipart
-opencv-python
+opencv-python-headless==4.9.0.80
 mediapipe
 pandas
 scikit-learn
